@@ -557,7 +557,6 @@ input {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-bottom: 20px;
 }
 .sidebar-container .sidebar .sidebar-content .category .category-head {
   width: 100%;
@@ -602,16 +601,33 @@ input {
   margin-bottom: 20px;
   color: #2f55d4;
 }
-.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item {
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container:last-child {
+  margin-bottom: 0;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .category-content-item {
   width: 100%;
   height: auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
-.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item .category-content-item-icon {
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .category-content-item div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .category-content-item div .category-content-item-icon {
   width: 30px;
   height: 30px;
   display: flex;
@@ -624,19 +640,51 @@ input {
   font-size: 1.1rem;
   font-weight: 600;
 }
-.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item .category-content-item-text {
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .category-content-item div .category-content-item-text {
   font-size: 1rem;
   font-weight: 900;
   font-family: "Nunito", sans-serif;
 }
-.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item .expand-content {
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .category-content-item div .expand-content {
   font-size: 1.2rem;
   margin-left: 10px;
-  rotate: 270deg;
+  rotate: -90deg;
   transition: all 0.3s ease-in-out;
 }
-.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item .active-expand {
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .category-content-item div .active-expand {
   rotate: 0deg !important;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .sub-category-items {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .sub-category-items .sub-category-item {
+  margin-bottom: 10px;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .sub-category-items .sub-category-item .sub-category-item-text {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Nunito", sans-serif;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .sub-category-items .sub-category-item .sub-category-item-text:hover {
+  color: #2eca8b;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .sub-category-items .sub-category-item:last-child {
+  margin-bottom: 0;
+}
+.sidebar-container .sidebar .sidebar-content .category .category-content .category-content-item-container .active-sub-items {
+  display: flex !important;
 }
 .sidebar-container .sidebar-line {
   width: 100%;
