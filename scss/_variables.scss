@@ -30,7 +30,7 @@ $gray-500: #adb5bd;
 $gray-600: #6c757d;
 $gray-700: #495057;
 // Overlay
-$overlay: rgba(0, 0, 0, 0.7);
+$overlay: rgba(0, 0, 0, 0.5);
 $gradident-overlay: rgba(94, 119, 204, 0.75);
 // Body Background
 $body-color: #161c2d;
@@ -38,8 +38,11 @@ $shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 // Base font
 $font-size-base: 16px;
 
-$font-family-base: "Nunito", sans-serif;
-$font-family-secondary: "Nunito", sans-serif;
+$font-family-base: "Nunito",
+sans-serif;
+$font-family-secondary: "Nunito",
+sans-serif;
+
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-variation-settings: "FILL"0, "wght"400, "GRAD"0, "opsz"24;
 }

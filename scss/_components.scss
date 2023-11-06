@@ -1,7 +1,8 @@
 .hero {
   background: url("../assets/images/background.JPG") no-repeat center center;
   background-size: cover;
-  height: 75vh;
+  background-attachment: fixed;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -315,7 +316,6 @@
           flex-direction: column;
           justify-content: flex-start;
           align-items: flex-start;
-          margin-bottom: 20px;
           color: $primary;
 
           .category-content-item-container {
@@ -326,9 +326,11 @@
             justify-content: flex-start;
             align-items: flex-start;
             margin-bottom: 10px;
-            &:last-child{
+
+            &:last-child {
               margin-bottom: 0;
             }
+
             .category-content-item {
               width: 100%;
               height: auto;

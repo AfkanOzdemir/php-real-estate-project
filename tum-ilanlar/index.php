@@ -192,7 +192,41 @@
                     </div>
                     <hr class="sidebar-line">
                 </div>
+                <div class="sidebar-content">
+                    <div class="category">
+                        <div class="category-head">
+                            <span class="category-icon material-symbols-outlined">
+                                business
+                            </span>
+                            <span class="category-title-text">
+                                İşyeri
+                            </span>
+                            <span class="expand material-symbols-outlined">
+                                expand_more
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="all-features-container">
+            <a href="../ilan/" class="feature-card">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Property Image">
+                    <div class="card-body">
+                        <h3 class="card-title">3+1 Apartment in Istanbul</h3>
+                        <p class="card-location">İstanbul, Gop</p>
+                        <div class="card-infos">
+                            <span><span class="material-symbols-outlined">home</span>Daire</span>
+                            <span><span class="material-symbols-outlined">weekend</span>3+1</span>
+                            <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
+                            <span><span class="material-symbols-outlined">texture</span>120 m2</span>
+                        </div>
+                        <p class="card-price">250,000TL</p>
+                    </div>
+                </div>
+            </a>
+        </div>
     </body>
     <script>
         let categoryContentItemContainer = document.querySelectorAll(".category-content-item-container");
