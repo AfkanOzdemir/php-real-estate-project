@@ -13,9 +13,9 @@
                 <li><a href="/emlakla/index.php">Anasayfa</a></li>
                 <li><a href="#">Hakkımızda</a></li>
                 <li><a href="#">İletişim</a></li>
-                <li class="estate"><a href="#">Hemen Emlakla</a></li>
+                <li class="estate"><a href="/emlakla/emlak-ekle/">Hemen Emlakla</a></li>
                 <li class="user">
-                    <a href="/emlakla/auth"><span class="material-symbols-outlined">account_circle</span></a>
+                    <a href="/emlakla/auth/"><span class="material-symbols-outlined">account_circle</span></a>
                 </li>
             </ul>
         </div>
