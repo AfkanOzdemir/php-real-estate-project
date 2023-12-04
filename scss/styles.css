@@ -329,6 +329,8 @@ input {
   grid-gap: 40px;
 }
 .all-features-container .feature-card {
+  width: 350px;
+  height: 400px;
   padding: 20px;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -354,6 +356,7 @@ input {
 }
 .all-features-container .feature-card .card .card-body .card-title {
   font-size: 1.3rem;
+  line-height: 1.9rem;
   font-weight: 900;
   font-family: "Nunito", sans-serif;
   color: #2f55d4;
@@ -371,6 +374,7 @@ input {
   height: auto;
   display: flex;
   margin-bottom: 10px;
+  font-family: "Nunito", sans-serif;
 }
 .all-features-container .feature-card .card .card-body .card-infos span {
   display: flex;
@@ -756,6 +760,7 @@ input {
 }
 .ilan-container .details-container .right-side .contact-info .user-mail a {
   text-decoration: none;
+  text-align: left;
   color: #2f55d4;
   font-size: 1rem;
   font-weight: 700;
@@ -765,6 +770,35 @@ input {
   transition: all 0.3s ease-in-out;
 }
 .ilan-container .details-container .right-side .contact-info .user-mail:hover {
+  color: #244aa8;
+}
+.ilan-container .details-container .right-side .contact-info .user-location {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 20px;
+}
+.ilan-container .details-container .right-side .contact-info .user-location span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #223445;
+  margin-right: 10px;
+}
+.ilan-container .details-container .right-side .contact-info .user-location a {
+  text-align: left;
+  text-decoration: none;
+  color: #2f55d4;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #223445;
+  font-family: "Nunito", sans-serif;
+  transition: all 0.3s ease-in-out;
+  line-height: 1.5rem;
+}
+.ilan-container .details-container .right-side .contact-info .user-location:hover {
   color: #244aa8;
 }
 
@@ -1295,10 +1329,11 @@ input {
 }
 
 .hiddentext {
-  padding: 10px 20px;
+  padding: 10px 0px;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
+  background-color: #2eca8b;
   color: #ffffff;
   font-family: "Nunito", sans-serif;
   text-decoration: none;
@@ -1306,6 +1341,18 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer !important;
+}
+.hiddentext span {
+  margin-left: 10px !important;
+  color: white !important;
+}
+.hiddentext a {
+  color: white !important;
+}
+.hiddentext:hover {
+  background-color: #2a9d7e;
+  color: #ffffff;
 }
 
 .auth-container {

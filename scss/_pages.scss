@@ -7,6 +7,8 @@
     grid-gap: 40px;
 
     .feature-card {
+        width: 350px;
+        height: 400px;
         padding: 20px;
         border: 1px solid #e6e6e6;
         border-radius: 10px;
@@ -35,6 +37,7 @@
 
                 .card-title {
                     font-size: 1.3rem;
+                    line-height: 1.9rem;
                     font-weight: 900;
                     font-family: $font-family-base;
                     color: $primary;
@@ -54,6 +57,7 @@
                     height: auto;
                     display: flex;
                     margin-bottom: 10px;
+                    font-family: $font-family-base;
 
                     span {
                         display: -webkit-flex;
@@ -496,6 +500,7 @@
 
                     a {
                         text-decoration: none;
+                        text-align: left;
                         color: $primary;
                         font-size: 1rem;
                         font-weight: 700;
@@ -508,6 +513,40 @@
                     &:hover {
                         color: $primary-dark;
                     }
+                }
+
+                .user-location {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    margin-bottom: 20px;
+
+                    span {
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        text-align: center;
+                        color: #223445;
+                        margin-right: 10px;
+                    }
+
+                    a {
+                        text-align: left;
+                        text-decoration: none;
+                        color: $primary;
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: #223445;
+                        font-family: $font-family-base;
+                        transition: all 0.3s ease-in-out;
+                        line-height: 1.5rem;
+                    }
+
+                    &:hover {
+                        color: $primary-dark;
+                    }
+
                 }
             }
         }

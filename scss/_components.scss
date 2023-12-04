@@ -474,10 +474,11 @@
 }
 
 .hiddentext {
-  padding: 10px 20px;
+  padding: 10px 0px;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
+  background-color: $secondary;
   color: $white;
   font-family: $font-family-base;
   text-decoration: none;
@@ -485,4 +486,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer !important;
+
+  span {
+    margin-left: 10px !important;
+    color: white !important;
+  }
+
+  a {
+    color: white !important;
+  }
+
+  &:hover {
+    background-color: $secondary-dark;
+    color: $white;
+  }
 }

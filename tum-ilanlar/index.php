@@ -1,3 +1,15 @@
+<?php
+include '../config.php';
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Bağlantıyı kontrol et
+if ($conn->connect_error) {
+    die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
+}
+$sql = "SELECT * FROM emlaklar";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,231 +27,50 @@
 
 <body>
     <?php include_once '../inc/navbar.php'; ?>
+    <?php include_once '../inc/Sidebar.php'; ?>
+    <div class="all-features-container">
 
-    <body>
-        <div class="sidebar-container">
-            <div class="sidebar-button">
-                Hemen Emlakla
-                <span class="material-symbols-outlined">
-                    menu
-                </span>
-            </div>
-            <hr class="sidebar-line">
-            <div class="sidebar">
-                <div class="sidebar-content">
-                    <div class="category">
-                        <div class="category-head">
-                            <span class="category-icon material-symbols-outlined">
-                                home
-                            </span>
-                            <span class="category-title-text">
-                                Konut
-                            </span>
-                            <span class="expand material-symbols-outlined">
-                                expand_more
-                            </span>
-                        </div>
-                        <div class="category-content">
-                            <div class="category-content-item-container">
-                                <div class="category-content-item">
-                                    <div>
-                                        <span class="category-content-item-text">
-                                            Satılık
-                                        </span>
-                                        <span class="expand-content active-expand material-symbols-outlined">
-                                            expand_more
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="sub-category-items active-sub-items">
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Daire
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Residence
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Villa
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Müstakil Ev
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Köşk &amp; Konak
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Yalı Dairesi
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Çiftlik Evi
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Yazlık
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Prefabrik Ev
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Kooperatif
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Çiftlik Evi
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Diğer
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="category-content-item-container">
-                                <div class="category-content-item">
-                                    <div>
-                                        <span class="category-content-item-text">
-                                            Kiralık
-                                        </span>
-                                        <span class="expand-content material-symbols-outlined">
-                                            expand_more
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="sub-category-items">
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Daire
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Residence
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Villa
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Müstakil Ev
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Köşk &amp; Konak
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Yalı Dairesi
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Çiftlik Evi
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Yazlık
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Prefabrik Ev
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Kooperatif
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Çiftlik Evi
-                                        </span>
-                                    </div>
-                                    <div class="sub-category-item">
-                                        <span class="sub-category-item-text">
-                                            Diğer
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="sidebar-line">
-                </div>
-                <div class="sidebar-content">
-                    <div class="category">
-                        <div class="category-head">
-                            <span class="category-icon material-symbols-outlined">
-                                business
-                            </span>
-                            <span class="category-title-text">
-                                İşyeri
-                            </span>
-                            <span class="expand material-symbols-outlined">
-                                expand_more
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="all-features-container">
-            <a href="../ilan/" class="feature-card">
+        <?php
+        if ($result && $result->num_rows > 0) {
+            // Ürünü al
+            $row = $result->fetch_assoc();
+
+            echo $htmlContent = <<<HTML
+            <a href="../ilan/?id={$row['id']}" class="feature-card">
                 <div class="card">
                     <img src="https://via.placeholder.com/300x200" alt="Property Image">
                     <div class="card-body">
-                        <h3 class="card-title">3+1 Apartment in Istanbul</h3>
-                        <p class="card-location">İstanbul, Gop</p>
+                        <h3 class="card-title">{$row["baslik"]}</h3>
+                        <p class="card-location">{$row["il"]}, {$row["ilce"]}</p>
                         <div class="card-infos">
-                            <span><span class="material-symbols-outlined">home</span>Daire</span>
-                            <span><span class="material-symbols-outlined">weekend</span>3+1</span>
-                            <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
-                            <span><span class="material-symbols-outlined">texture</span>120 m2</span>
+                            <span><span class="material-symbols-outlined">home</span>{$row["tipi"]}</span></span>
+                            <span><span class="material-symbols-outlined">weekend</span>{$row["oda"]}</span>
+                            <span><span class="material-symbols-outlined">layers</span>{$row["kat"]}.Kat</span>
+                            <span><span class="material-symbols-outlined">texture</span>{$row["mkare"]} m2</span>
                         </div>
-                        <p class="card-price">250,000TL</p>
+                        <p class="card-price"></p>
                     </div>
                 </div>
             </a>
-        </div>
-    </body>
-    <script>
-        let categoryContentItemContainer = document.querySelectorAll(".category-content-item-container");
-        categoryContentItemContainer.forEach((item) => {
-            item.querySelector(".category-content-item").addEventListener("click", () => {
-                categoryContentItemContainer.forEach(e => {
-                    e.querySelector(".expand-content").classList.remove("active-expand");
-                    e.querySelector(".sub-category-items").classList.remove("active-sub-items");
-                });
-                item.querySelector(".expand-content").classList.toggle("active-expand");
-                item.querySelector(".sub-category-items").classList.toggle("active-sub-items");
-            })
+        HTML;
+        }
+        ?>
+
+
+    </div>
+</body>
+<script>
+    let categoryContentItemContainer = document.querySelectorAll(".category-content-item-container");
+    categoryContentItemContainer.forEach((item) => {
+        item.querySelector(".category-content-item").addEventListener("click", () => {
+            categoryContentItemContainer.forEach(e => {
+                e.querySelector(".expand-content").classList.remove("active-expand");
+                e.querySelector(".sub-category-items").classList.remove("active-sub-items");
+            });
+            item.querySelector(".expand-content").classList.toggle("active-expand");
+            item.querySelector(".sub-category-items").classList.toggle("active-sub-items");
         })
-    </script>
+    })
+</script>
 
 </html>
