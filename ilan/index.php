@@ -112,7 +112,27 @@ if ($result && $result->num_rows > 0) {
             </div>
         </div>
     <div class="right-side">
-        a
+        <div class="user-section">
+            <div class="user-image">
+                <img src="https://via.placeholder.com/100x100" alt="User Image">
+            </div>
+            <div class="user-name">
+                <h3>Afkan Ozdemir</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="contact-info"> 
+            <h3>İlteişim Bilgileri</h3>
+            <div class="user-phone hiddentext">
+                <span class="material-symbols-outlined">call</span>
+                <a href="tel:0530 00 00" class="phone">0530 000 00 00</a>
+            </div>
+            <div class="user-mail">
+                <span class="material-symbols-outlined">mail</span>
+                <a href="mailto:afkanozdemir@gmail.com">afkanozdemir@gmail.com</a>
+            </div>
+        </div>
+
     </div>
     </div>
 </div>
