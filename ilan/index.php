@@ -106,15 +106,7 @@ if ($result && $result->num_rows > 0) {
                             Kategorisi
                         </span>
                         <span class="response">
-                            {$row["kategorisi"]}
-                        </span>
-                    </div>
-                    <div>
-                        <span class="quest">
-                            Türü
-                        </span>
-                        <span class="response">
-                            {$row["tur"]}
+                            {$row["kategori"]}
                         </span>
                     </div>
                     <div>

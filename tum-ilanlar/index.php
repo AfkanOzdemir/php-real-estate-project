@@ -1,13 +1,5 @@
 <?php
-include '../config.php';
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Bağlantıyı kontrol et
-if ($conn->connect_error) {
-    die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
-}
-$sql = "SELECT * FROM emlaklar";
-$result = $conn->query($sql);
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -30,13 +22,27 @@ $result = $conn->query($sql);
     <?php include_once '../inc/Sidebar.php'; ?>
     <div class="all-features-container">
 
-        <?php
-        if ($result && $result->num_rows > 0) {
-            // Ürünü al
-            $row = $result->fetch_assoc();
 
-            echo $htmlContent = <<<HTML
-            <a href="../ilan/?id={$row['id']}" class="feature-card">
+        <?php
+        include '../config.php';
+
+        // Veritabanı bağlantısı
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Bağlantıyı kontrol et
+        if ($conn->connect_error) {
+            die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
+        }
+
+        // Ürün verilerini sorgula
+        $sql = "SELECT * FROM emlaklar ORDER BY id ASC";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            // Sonuçları döngü ile göster
+            while ($row = $result->fetch_assoc()) {
+                echo $htmlContent = <<<HTML
+                    <a href="../ilan/?id={$row['id']}" class="feature-card">
                 <div class="card">
                     <img src="https://via.placeholder.com/300x200" alt="Property Image">
                     <div class="card-body">
@@ -48,12 +54,16 @@ $result = $conn->query($sql);
                             <span><span class="material-symbols-outlined">layers</span>{$row["kat"]}.Kat</span>
                             <span><span class="material-symbols-outlined">texture</span>{$row["mkare"]} m2</span>
                         </div>
-                        <p class="card-price"></p>
+                        <p class="card-price">{$row["fiyat"]} TL</p>
                     </div>
                 </div>
             </a>
         HTML;
+            }
+        } else {
+            echo "HERHANGİ BİR İLAN BULUNAMADI";
         }
+        $conn->close();
         ?>
 
 
