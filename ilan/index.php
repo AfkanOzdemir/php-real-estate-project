@@ -36,7 +36,7 @@ if ($result && $result->num_rows > 0) {
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <!-- Swiper.js -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-            <script src="../assets/script/hideText.js   "></script>
+            <script src="../assets/script/hideText.js"></script>
         </head>
 
         <body>
@@ -167,8 +167,7 @@ if ($result && $result->num_rows > 0) {
 </html>
 HTML;
 } else {
-    echo "Ürün bulunamadı.";
+    echo "İlan bulunamadı.";
 }
-// Veritabanı bağlantısını kapat
 $conn->close();
 ?>

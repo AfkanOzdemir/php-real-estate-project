@@ -13,10 +13,16 @@
                 <li><a href="/emlakla/index.php">Anasayfa</a></li>
                 <li><a href="#">Hakkımızda</a></li>
                 <li><a href="#">İletişim</a></li>
-                <li class="estate"><a href="/emlakla/emlak-ekle/">Hemen Emlakla</a></li>
-                <li class="user">
-                    <a href="/emlakla/auth/"><span class="material-symbols-outlined">account_circle</span></a>
-                </li>
+                <?php
+                if (isset($_SESSION['user'])) {
+                    echo '<li class="estate"><a href="/emlakla/emlak-ekle/">Hemen Emlakla</a></li>';
+                    echo '<li class="user"><a href="/emlakla/user/"><span class="material-symbols-outlined">account_circle</span></a></li>';
+                    echo '<li class="user"><a href="/emlakla/auth/logout.php"><span class="material-symbols-outlined">logout</span></a></li>';
+                } else {
+                    echo '<li class="user"><a href="/emlakla/auth/"><span class="material-symbols-outlined">account_circle</span></a></li>';
+                }
+                ?>
+
             </ul>
         </div>
     </div>

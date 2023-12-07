@@ -1,7 +1,5 @@
 <?php
-include_once '../config.php';
-session_start();
-
+include '../config.php';
 // Veritabanı bağlantısı
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -11,28 +9,18 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $mail = $_POST['mail'];
+    $name = $_POST['name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE mail='$mail' AND password='$password'";
-    $result = $conn->query($sql);
+    $sql = "INSERT INTO users (name, last_name, mail, phone, password) VALUES ('$name', '$last_name', '$email', '$phone', '$password')";
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $_SESSION['user'] = $user;
-        echo "<script>
-        localStorage.setItem('user', JSON.stringify(" . json_encode($user) . "));
-        window.location.href = '/emlakla/';
-        </script>";
-        exit;
+    if ($conn->query($sql) === TRUE) {
+        header("Location: /emlakla/auth/");
     } else {
-        echo "<script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Hata...',
-            text: 'Kullanıcı adı veya şifre yanlış!'
-          })
-        </script>";
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 ?>
@@ -43,12 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriş Yap</title>
+    <title>Kayıt Ol</title>
     <link rel="stylesheet" href="../scss/styles.css">
-    <!-- Material Ui -->
+    <!-- Material Ui Icon-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 </head>
 
 <body>
@@ -62,17 +48,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <h4>Hemen Giriş Yap ve Emlakla!</h4>
                     <div class="form-group">
-                        <label for="mail">Mail</label>
-                        <input type="email" placeholder="Mail Adresinizi Giriniz" name="mail" required id="mail" class="form-control">
+                        <label for="name">Adınız</label>
+                        <input type="text" placeholder="Adınız" name="name" required id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Soyadınız</label>
+                        <input type="text" placeholder="Soyadınızı Giriniz" name="last_name" required id="last_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" placeholder="Mail Adresinizi Giriniz" name="email" required id="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon Numaranız</label>
+                        <input type="tel" placeholder="Telefon Numaranızı Giriniz" name="phone" required id="phone" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="password">Şifre</label>
                         <input type="password" placeholder="Şifrenizi Giriniz" name="password" required id="password" class="form-control">
                     </div>
                     <div class='prm-button'>
-                        <button type="submit">Giriş Yap</button>
+                        <button>Kayıt Ol</button>
                     </div>
-                    <a href="/emlakla/auth/register.php" class='no-account'>Hesabın yok mu? Hemen <span>kayıt ol</span></a>
                 </form>
             </div>
         </div>
