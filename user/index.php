@@ -11,6 +11,8 @@ if ($conn->connect_error) {
 $user_id = $_SESSION['user']['id'];
 $sql = "SELECT * FROM users WHERE id = '$user_id'";
 $result = $conn->query($sql);
+$allEstates = "SELECT * FROM emlaklar WHERE sahip_id = '$user_id'";
+$allEstatesResult = $conn->query($allEstates);
 $user = $result->fetch_assoc();
 ?>
 
@@ -73,7 +75,38 @@ $user = $result->fetch_assoc();
             </div>
         </div>
         <div class="user-all-features">
+            <ul class="feature-list">
+                <h3>Tüm Emlaklarım</h3>
+                <?php
+                if ($allEstatesResult && $allEstatesResult->num_rows > 0) {
+                    $allEstates = $allEstatesResult->fetch_assoc();
+                    echo $htmlContent = <<<HTML
 
+                <li class="item">
+                    <div class="itemId">
+                        #{$allEstates["id"]}
+                    </div>
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/600x400" alt="">
+                    </div>
+                    <div class="item-title">
+                        {$allEstates["baslik"]}
+                    </div>
+                    <div class="price">
+                        {$allEstates["fiyat"]} TL
+                    </div>
+                    <div class="item-actions">
+                        <span class="material-symbols-outlined edit">edit</span>
+                        <span class="material-symbols-outlined delete">delete</span>
+                    </div>
+                </li>
+                HTML;
+                } else {
+                    echo "<h3>Henüz bir emlak ilanı eklenmemiş.</h3>";
+                }
+                ?>
+
+            </ul>
         </div>
     </div>
 </body>
