@@ -947,8 +947,7 @@ input {
 }
 .add-estate-transactions .estate-card .head .switch span {
   padding: 10px 20px;
-  cursor: pointer;
-  font-size: 1.7rem;
+  font-size: 3rem;
   font-weight: 800;
   font-family: "Nunito", sans-serif;
 }
@@ -1739,7 +1738,7 @@ input {
      object-fit: contain;
 }
 .user-container .user-all-features .feature-list .item .item-title {
-  width: 20%;
+  width: 40%;
   height: 100%;
   display: flex;
   margin-left: 10px;
@@ -1766,10 +1765,9 @@ input {
   line-height: 1.2;
 }
 .user-container .user-all-features .feature-list .item .item-actions {
-  width: 20%;
+  width: 10%;
   height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-left: 10px;
 }
@@ -1792,7 +1790,7 @@ input {
 }
 .user-container .user-all-features .feature-list .item .item-actions .delete {
   background-color: #e24444;
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;

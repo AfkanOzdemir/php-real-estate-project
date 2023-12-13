@@ -48,7 +48,6 @@ $user = $result->fetch_assoc();
                             <span class="material-symbols-outlined icon">account_circle</span>
                             <span class="value"><?php echo $user['name'] . " " . $user['last_name']; ?></span>
                         </div>
-                        <span class="material-symbols-outlined edit">edit</span>
                     </div>
                     <div class="user-profile-info-item">
                         <div>
@@ -62,14 +61,12 @@ $user = $result->fetch_assoc();
                                 } ?>
                             </span>
                         </div>
-                        <span class="material-symbols-outlined edit">edit</span>
                     </div>
                     <div class="user-profile-info-item">
                         <div>
                             <span class="material-symbols-outlined icon">phone</span>
                             <span class="value"><?php echo $user['phone']; ?></span>
                         </div>
-                        <span class="material-symbols-outlined edit">edit</span>
                     </div>
                 </div>
             </div>
@@ -87,7 +84,7 @@ $user = $result->fetch_assoc();
                         #{$allEstates["id"]}
                     </div>
                     <div class="item-image">
-                        <img src="https://via.placeholder.com/600x400" alt="">
+                        <img src="{$allEstates['r1']}" alt="">
                     </div>
                     <div class="item-title">
                         {$allEstates["baslik"]}
@@ -96,8 +93,9 @@ $user = $result->fetch_assoc();
                         {$allEstates["fiyat"]} TL
                     </div>
                     <div class="item-actions">
-                        <span class="material-symbols-outlined edit">edit</span>
-                        <span class="material-symbols-outlined delete">delete</span>
+                       <span class="material-symbols-outlined delete"
+                          onclick="window.location.href = '/emlakla/user/delete.php?id={$allEstates['id']}'"
+                       >delete</span>
                     </div>
                 </li>
                 HTML;

@@ -1,6 +1,14 @@
 <?php
 include_once './config.php';
 session_start();
+
+// Veritabanı bağlantısı
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Bağlantıyı kontrol et
+if ($conn->connect_error) {
+    die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -107,118 +115,37 @@ session_start();
         <div class="featured-ads">
             <div class="swiper featured-ads-swiper">
                 <div class="swiper-wrapper">
-                    <a href="#" class="swiper-slide feature-card">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                            <div class="card-body">
-                                <h3 class="card-title">3+1 Apartment in Istanbul</h3>
-                                <p class="card-location">İstanbul, Gop</p>
-                                <div class="card-infos">
-                                    <span><span class="material-symbols-outlined">home</span>Daire</span>
-                                    <span><span class="material-symbols-outlined">weekend</span>3+1</span>
-                                    <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
-                                    <span><span class="material-symbols-outlined">texture</span>120 m2</span>
+                    <?php
+                    $sql = "SELECT * FROM emlaklar ORDER BY id DESC LIMIT 8";
+                    $result = $conn->query($sql);
+                    if ($result && $result->num_rows > 0) {
+                        // Sonuçları döngü ile göster
+                        while ($row = $result->fetch_assoc()) {
+                            $r = $row['r1'];
+                            $r = substr($r, 1);
+
+                            echo $htmlContent = <<<HTML
+
+                            <a href="/emlakla/ilan/?id={$row['id']}" class="swiper-slide feature-card">
+                                <div class="card">
+                                        <img src="$r" alt="Property Image">
+                                    <div class="card-body">
+                                        <h3 class="card-title">{$row["baslik"]}</h3>
+                                        <p class="card-location">{$row["il"]}, {$row["ilce"]}   </p>
+                                        <div class="card-infos">
+                                            <span><span class="material-symbols-outlined">home</span>{$row["tipi"]}</span>
+                                            <span><span class="material-symbols-outlined">weekend</span>{$row["oda"]}</span>
+                                            <span><span class="material-symbols-outlined">layers</span>{$row["kat"]}.Kat</span>
+                                            <span><span class="material-symbols-outlined">texture</span>{$row["mkare"]} m2</span>
+                                        </div>
+                                        <p class="card-price">250,000TL</p>
+                                    </div>
                                 </div>
-                                <p class="card-price">250,000TL</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="swiper-slide feature-card">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                            <div class="card-body">
-                                <h3 class="card-title">3+1 Apartment in Istanbul</h3>
-                                <p class="card-location">İstanbul, Gop</p>
-                                <div class="card-infos">
-                                    <span><span class="material-symbols-outlined">home</span>Daire</span>
-                                    <span><span class="material-symbols-outlined">weekend</span>3+1</span>
-                                    <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
-                                    <span><span class="material-symbols-outlined">texture</span>120 m2</span>
-                                </div>
-                                <p class="card-price">250,000TL</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="swiper-slide feature-card">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                            <div class="card-body">
-                                <h3 class="card-title">3+1 Apartment in Istanbul</h3>
-                                <p class="card-location">İstanbul, Gop</p>
-                                <div class="card-infos">
-                                    <span><span class="material-symbols-outlined">home</span>Daire</span>
-                                    <span><span class="material-symbols-outlined">weekend</span>3+1</span>
-                                    <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
-                                    <span><span class="material-symbols-outlined">texture</span>120 m2</span>
-                                </div>
-                                <p class="card-price">250,000TL</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="swiper-slide feature-card">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                            <div class="card-body">
-                                <h3 class="card-title">3+1 Apartment in Istanbul</h3>
-                                <p class="card-location">İstanbul, Gop</p>
-                                <div class="card-infos">
-                                    <span><span class="material-symbols-outlined">home</span>Daire</span>
-                                    <span><span class="material-symbols-outlined">weekend</span>3+1</span>
-                                    <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
-                                    <span><span class="material-symbols-outlined">texture</span>120 m2</span>
-                                </div>
-                                <p class="card-price">250,000TL</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="swiper-slide feature-card">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                            <div class="card-body">
-                                <h3 class="card-title">3+1 Apartment in Istanbul</h3>
-                                <p class="card-location">İstanbul, Gop</p>
-                                <div class="card-infos">
-                                    <span><span class="material-symbols-outlined">home</span>Daire</span>
-                                    <span><span class="material-symbols-outlined">weekend</span>3+1</span>
-                                    <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
-                                    <span><span class="material-symbols-outlined">texture</span>120 m2</span>
-                                </div>
-                                <p class="card-price">250,000TL</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="swiper-slide feature-card">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                            <div class="card-body">
-                                <h3 class="card-title">3+1 Apartment in Istanbul</h3>
-                                <p class="card-location">İstanbul, Gop</p>
-                                <div class="card-infos">
-                                    <span><span class="material-symbols-outlined">home</span>Daire</span>
-                                    <span><span class="material-symbols-outlined">weekend</span>3+1</span>
-                                    <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
-                                    <span><span class="material-symbols-outlined">texture</span>120 m2</span>
-                                </div>
-                                <p class="card-price">250,000TL</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="swiper-slide feature-card">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                            <div class="card-body">
-                                <h3 class="card-title">3+1 Apartment in Istanbul</h3>
-                                <p class="card-location">İstanbul, Gop</p>
-                                <div class="card-infos">
-                                    <span><span class="material-symbols-outlined">home</span>Daire</span>
-                                    <span><span class="material-symbols-outlined">weekend</span>3+1</span>
-                                    <span><span class="material-symbols-outlined">layers</span>3.Kat</span>
-                                    <span><span class="material-symbols-outlined">texture</span>120 m2</span>
-                                </div>
-                                <p class="card-price">250,000TL</p>
-                            </div>
-                        </div>
-                    </a>
+                            </a>
+                        HTML;
+                        }
+                    };
+                    ?>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>

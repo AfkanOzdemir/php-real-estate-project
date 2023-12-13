@@ -14,7 +14,7 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Swiper.js -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+    <script src="../assets/scripts/filter.js"></script>
 </head>
 
 <body>
@@ -42,9 +42,9 @@ session_start();
             // Sonuçları döngü ile göster
             while ($row = $result->fetch_assoc()) {
                 echo $htmlContent = <<<HTML
-                    <a href="../ilan/?id={$row['id']}" class="feature-card">
+                    <a href="../ilan/?id={$row['id']}" class="feature-card {$row['kategori']} {$row['tipi']}">
                 <div class="card">
-                    <img src="https://via.placeholder.com/300x200" alt="Property Image">
+                    <img src='{$row["r1"]}' alt="Property Image">
                     <div class="card-body">
                         <h3 class="card-title">{$row["baslik"]}</h3>
                         <p class="card-location">{$row["il"]}, {$row["ilce"]}</p>
@@ -81,6 +81,11 @@ session_start();
             item.querySelector(".sub-category-items").classList.toggle("active-sub-items");
         })
     })
+</script>
+<script>
+    //Filter categoy and type
+
+    let category = document.querySelector
 </script>
 
 </html>

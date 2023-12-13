@@ -3,41 +3,7 @@ session_start();
 if (!isset($_SESSION['user'])) {
     header("Location: /emlakla/auth/");
 }
-
-include '../config.php';
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $sahipId = $_SESSION['user']['id'];
-    $ilanNo = rand(100000, 9999999999);
-    $guncelTarih = date("Y-m-d H:i:s");
-    $baslik = $_POST['baslik'];
-    $fiyat = $_POST['fiyat'];
-    $kategori = $_POST['kategori'];
-    $tipi = $_POST['tipi'];
-    $oda = $_POST['oda'];
-    $il = $_POST['il'];
-    $ilce = $_POST['ilce'];
-    $mahalle = $_POST['mahalle'];
-    $mkare = $_POST['mkare'];
-    $kat = $_POST['kat'];
-    $aciklama = $_POST['aciklama'];
-
-    $sql = "INSERT INTO emlaklar (sahip_id, ilan_no, baslik, kategori, guncel_tarih, fiyat, tipi, oda, il, ilce, mahalle, mkare, kat, aciklama) VALUES ('$sahipId','$ilanNo','$baslik','$kategori','$guncelTarih', '$fiyat',  '$tipi', '$oda', '$il', '$ilce', '$mahalle', '$mkare', '$kat', '$aciklama')";
-
-    if ($conn->query($sql) === TRUE) {
-        header("Location: /emlakla/user/");
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-}
 ?>
-
 
 
 <!DOCTYPE html>
@@ -61,37 +27,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="head">
                 <div class="switch">
                     <span class="add-estate-switch selected">Emlak Ekle</span>
-                    <hr />
-                    <span class="update-estate-switch">Emlak Güncelle</span>
                 </div>
             </div>
             <div class="add-estate-container">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form method="POST" action="addestate.php" enctype="multipart/form-data">
                     <div class="form-group">
                         <!-- Resim1 -->
                         <div class="input-group">
-                            <label for="estate-image1">Emlak Resmi 1</label>
-                            <input class="estate-image" type="file" name="r1" id="estate-image1" />
+                            <label for="r1">Emlak Resmi 1</label>
+                            <input class="estate-image" type="file" name="r1" id="r1" />
                         </div>
                         <!-- Resim2 -->
                         <div class="input-group">
-                            <label for="estate-image2">Emlak Resmi 2</label>
-                            <input class="estate-image" type="file" name="r2" id="estate-image2" />
+                            <label for="r2">Emlak Resmi 2</label>
+                            <input class="estate-image" type="file" name="r2" id="r2" />
                         </div>
                         <!-- Resim3 -->
                         <div class="input-group">
-                            <label for="estate-image3">Emlak Resmi 3</label>
-                            <input class="estate-image" type="file" name="r3" id="estate-image3" />
+                            <label for="r3">Emlak Resmi 3</label>
+                            <input class="estate-image" type="file" name="r3" id="r3" />
                         </div>
                         <!-- Resim4 -->
                         <div class="input-group">
-                            <label for="estate-image4">Emlak Resmi 4</label>
-                            <input class="estate-image" type="file" name="r4" id="estate-image4" />
+                            <label for="r4">Emlak Resmi 4</label>
+                            <input class="estate-image" type="file" name="r4" id="r4" />
                         </div>
                         <!-- Resim5 -->
                         <div class="input-group">
-                            <label for="estate-image5">Emlak Resmi 5</label>
-                            <input class="estate-image" type="file" name="r5" id="estate-image5" />
+                            <label for="r5">Emlak Resmi 5</label>
+                            <input class="estate-image" type="file" name="r5" id="r5" />
                         </div>
 
                         <div class="input-group">

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include '../config.php';
 // Veritabanı bağlantısı
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,6 +17,7 @@ $sahipbul = "SELECT * FROM users WHERE id = (SELECT sahip_id FROM emlaklar WHERE
 
 $result = $conn->query($sql);
 $sahip = $conn->query($sahipbul);
+session_start();
 ?>
 
 
@@ -69,13 +69,13 @@ $sahip = $conn->query($sahipbul);
             <div class="ilan-container">
                 <div class="images-container">
                     <div class="main-image">
-                        <img src="https://via.placeholder.com/600x400" alt="Property Image">
+                        <img src="{$row['r1']}" alt="Property Image">
                     </div>
                     <div class="other-images">
-                        <img src="https://via.placeholder.com/500x300" alt="Property Image">
-                        <img src="https://via.placeholder.com/500x300" alt="Property Image">
-                        <img src="https://via.placeholder.com/500x300" alt="Property Image">
-                        <img src="https://via.placeholder.com/500x300" alt="Property Image">
+                        <img src="{$row['r2']}" alt="Property Image">
+                        <img src="{$row['r3']}" alt="Property Image">
+                        <img src="{$row['r4']}" alt="Property Image">
+                        <img src="{$row['r5']}" alt="Property Image">
                     </div>
                 </div>
             <div class="details-container">
