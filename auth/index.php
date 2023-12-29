@@ -1,32 +1,32 @@
 <?php
-include_once '../config.php';
-session_start();
+include_once '../config.php'; // Veritabanı bağlantısı sağlanıyor
+session_start();    // Session başlatılıyor bu sayede kullanıcı bilgileri tutulabilecek
 
 // Veritabanı bağlantısı
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname); // Veritabanı bağlantısı
 
 // Bağlantıyı kontrol et
-if ($conn->connect_error) {
+if ($conn->connect_error) { // Bağlantı başarısız ise Hata mesajı gösterir
     die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $mail = $_POST['mail'];
-    $password = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") { // Formdan veri gelip gelmediğini kontrol eder
+    $mail = $_POST['mail']; // Formdan gelen mail değerini alır
+    $password = $_POST['password']; // Formdan gelen password değerini alır
 
-    $sql = "SELECT * FROM users WHERE mail='$mail' AND password='$password'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM users WHERE mail='$mail' AND password='$password'";   // Veritabanından kullanıcı bilgilerini çeker
+    $result = $conn->query($sql);   // Sorguyu çalıştırır
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $_SESSION['user'] = $user;
-        echo "<script>
-        localStorage.setItem('user', JSON.stringify(" . json_encode($user) . "));
-        window.location.href = '/emlakla/';
+    if ($result->num_rows > 0) {    // Eğer kullanıcı varsa
+        $user = $result->fetch_assoc();     // Kullanıcı bilgilerini alır
+        $_SESSION['user'] = $user;  // Session'a kullanıcı bilgilerini kaydeder
+        echo "<script>  // Kullanıcı bilgilerini kaydettikten sonra anasayfaya yönlendirir
+        localStorage.setItem('user', JSON.stringify(" . json_encode($user) . "));   // Kullanıcı bilgilerini localstorage'a kaydeder
+        window.location.href = '/emlakla/'; // Anasayfaya yönlendirir
         </script>";
-        exit;
-    } else {
-        echo "<script>
+        exit;   // Çıkış yapar
+    } else {    // Eğer kullanıcı yoksa hatayı gösterir
+        echo "<script>  
         Swal.fire({
             icon: 'error',
             title: 'Hata...',

@@ -1,6 +1,6 @@
 <?php
-include '../config.php';
-// Veritabanı bağlantısı
+include '../config.php'; // Veritabanı bağlantı ayarları
+// Veritabanı bağlantısı    
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Bağlantıyı kontrol et
@@ -12,12 +12,13 @@ if ($conn->connect_error) {
 $id = $_GET['id'];
 
 // Ürünü sorgula
-$sql = "SELECT * FROM emlaklar WHERE id = '$id'";
+$sql = "SELECT * FROM emlaklar WHERE id = '$id'";   // İlanı bulmak için id'ye göre sorgu
 $sahipbul = "SELECT * FROM users WHERE id = (SELECT sahip_id FROM emlaklar WHERE id = '$id')";
-
-$result = $conn->query($sql);
-$sahip = $conn->query($sahipbul);
-session_start();
+ // İlan sahibini bulmak için id'ye göre sorgu
+ 
+$result = $conn->query($sql);   // İlanı bulmak için id'ye göre sorgu
+$sahip = $conn->query($sahipbul);   // İlan sahibini bulmak için id'ye göre sorgu
+session_start();    // Session başlat
 ?>
 
 
@@ -61,28 +62,28 @@ session_start();
         </div>
     </div>
     <?php
-    if ($result && $result->num_rows > 0 && $sahip && $sahip->num_rows > 0) {
+    if ($result && $result->num_rows > 0 && $sahip && $sahip->num_rows > 0) { // Eğer sonuç varsa
         // Ürünü al
-        $row = $result->fetch_assoc();
-        $sahip = $sahip->fetch_assoc();
+        $row = $result->fetch_assoc();  // İlanı bulmak için id'ye göre sorgu
+        $sahip = $sahip->fetch_assoc(); // İlan sahibini bulmak için id'ye göre sorgu
         echo $htmlContent = <<<HTML
             <div class="ilan-container">
                 <div class="images-container">
                     <div class="main-image">
-                        <img src="{$row['r1']}" alt="Property Image">
+                        <img src="{$row['r1']}" alt="Property Image"> 
                     </div>
                     <div class="other-images">
                         <img src="{$row['r2']}" alt="Property Image">
-                        <img src="{$row['r3']}" alt="Property Image">
-                        <img src="{$row['r4']}" alt="Property Image">
-                        <img src="{$row['r5']}" alt="Property Image">
+                        <img src="{$row['r3']}" alt="Property Image">   
+                        <img src="{$row['r4']}" alt="Property Image"> 
+                        <img src="{$row['r5']}" alt="Property Image">  
                     </div>
                 </div>
             <div class="details-container">
                 <div class="left-side">
                     <div class="advert-title">
-                        <h1>{$row["baslik"]}</h1>
-                <span class="price">{$row["fiyat"]} TL</span>
+                        <h1>{$row["baslik"]}</h1> 
+                <span class="price">{$row["fiyat"]} TL</span>   
             </div>
             <div class="advert-informations">
                 <h3>İlan Bilgileri</h3>
@@ -140,21 +141,21 @@ session_start();
                     </div>
                 </div>
                 <hr>
-                <div class="contact-info">
+                <div class="contact-info"> 
                     <h3>İlteişim Bilgileri</h3>
-                    <div class="user-phone hiddentext">
-                        <span class="material-symbols-outlined">call</span>
+                    <div class="user-phone hiddentext"> 
+                        <span class="material-symbols-outlined">call</span> 
                         <a href="tel:0530 00 00" class="phone">{$sahip["phone"]}</a>
                     </div>
                     <div class="user-mail">
-                        <span class="material-symbols-outlined">mail</span>
-                        <a href="mailto:afkanozdemir@gmail.com">{$sahip["mail"]}</a>
+                        <span class="material-symbols-outlined">mail</span> 
+                        <a>{$sahip["mail"]}</a> 
                     </div>
                     <div class="user-location">
                         <span class="material-symbols-outlined">location_on</span>
-                        <a href="mailto:afkanozdemir@gmail.com">
+                        <a >
                             <!-- Row adress -->
-                            {$row["il"]}, {$row["ilce"]}, {$row["mahalle"]}
+                            {$row["il"]}, {$row["ilce"]}, {$row["mahalle"]} 
                         </a>
                     </div>
                 </div>

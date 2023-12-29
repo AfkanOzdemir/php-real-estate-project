@@ -1,19 +1,19 @@
 <?php
-session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: /emlakla/auth/");
+session_start(); // Session başlat
+if (!isset($_SESSION['user'])) {    // Eğer kullanıcı giriş yapmadıysa
+    header("Location: /emlakla/auth/"); // Giriş sayfasına yönlendir
 }
-include '../config.php';
-$conn = new mysqli($servername, $username, $password, $dbname);
+include '../config.php';        // Veritabanı bağlantısı
+$conn = new mysqli($servername, $username, $password, $dbname); // Veritabanı bağlantısı
 if ($conn->connect_error) {
-    die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
+    die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);   // Bağlantı başarısız ise Hata mesajı gösterir
 }
-$user_id = $_SESSION['user']['id'];
-$sql = "SELECT * FROM users WHERE id = '$user_id'";
-$result = $conn->query($sql);
-$allEstates = "SELECT * FROM emlaklar WHERE sahip_id = '$user_id'";
-$allEstatesResult = $conn->query($allEstates);
-$user = $result->fetch_assoc();
+$user_id = $_SESSION['user']['id']; // Sessionda tutulan kullanıcı id değerini alır
+$sql = "SELECT * FROM users WHERE id = '$user_id'"; // Veritabanından kullanıcı bilgilerini çeker
+$result = $conn->query($sql);   // Sorguyu çalıştırır
+$allEstates = "SELECT * FROM emlaklar WHERE sahip_id = '$user_id'"; // Veritabanından kullanıcı bilgilerini çeker
+$allEstatesResult = $conn->query($allEstates);  // Sorguyu çalıştırır
+$user = $result->fetch_assoc(); // Sonuçları döngü ile göster
 ?>
 
 <!DOCTYPE html>
@@ -75,35 +75,34 @@ $user = $result->fetch_assoc();
             <ul class="feature-list">
                 <h3>Tüm Emlaklarım</h3>
                 <?php
-                if ($allEstatesResult && $allEstatesResult->num_rows > 0) {
-                    $allEstates = $allEstatesResult->fetch_assoc();
-                    echo $htmlContent = <<<HTML
-
-                <li class="item">
-                    <div class="itemId">
-                        #{$allEstates["id"]}
-                    </div>
-                    <div class="item-image">
-                        <img src="{$allEstates['r1']}" alt="">
-                    </div>
-                    <div class="item-title">
-                        {$allEstates["baslik"]}
-                    </div>
-                    <div class="price">
-                        {$allEstates["fiyat"]} TL
-                    </div>
-                    <div class="item-actions">
-                       <span class="material-symbols-outlined delete"
-                          onclick="window.location.href = '/emlakla/user/delete.php?id={$allEstates['id']}'"
-                       >delete</span>
-                    </div>
-                </li>
-                HTML;
+                if ($allEstatesResult && $allEstatesResult->num_rows > 0) { // Eğer sonuç varsa
+                    while ($allEstates = $allEstatesResult->fetch_assoc()) {    // Sonuçları döngü ile göster
+                        echo $htmlContent = <<<HTML
+                        <li class="item">
+                            <div class="itemId">
+                                #{$allEstates["id"]}
+                            </div>
+                            <div class="item-image">
+                                <img src="{$allEstates['r1']}" alt="">
+                            </div>
+                            <div class="item-title">
+                                {$allEstates["baslik"]}
+                            </div>
+                            <div class="price">
+                                {$allEstates["fiyat"]} TL
+                            </div>
+                            <div class="item-actions">
+                                <span class="material-symbols-outlined delete"
+                                    onclick="window.location.href = '/emlakla/user/delete.php?id={$allEstates['id']}'"
+                                >delete</span>
+                            </div>
+                        </li>
+                        HTML;
+                    }
                 } else {
                     echo "<h3>Henüz bir emlak ilanı eklenmemiş.</h3>";
                 }
                 ?>
-
             </ul>
         </div>
     </div>

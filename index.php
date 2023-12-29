@@ -9,6 +9,28 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
 }
+
+// formdaki verileri al, ve bunları filtrele çıkan sonuçları kullanıcıya göster
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $kategori = $_POST['kategori']; // Formdan gelen kategori değerini alır
+    $il = $_POST['il']; // Formdan gelen il değerini alır
+    $ilce = $_POST['ilce']; // Formdan gelen ilçe değerini alır
+    $mahalle = $_POST['mahalle'];   // Formdan gelen mahalle değerini alır
+
+    // like ile arama yapar
+    $sql2 = "SELECT * FROM emlaklar WHERE kategori LIKE '%$kategori%' OR il LIKE '%$il%' OR ilce LIKE '%$ilce%' OR mahalle LIKE '%$mahalle%'";
+    $result2 = $conn->query($sql2);   // Sorguyu çalıştırır
+
+    // Veritabanından gelen sonuçları döngü ile göster
+    if ($result2->num_rows > 0) {
+        // output data of each row
+        while ($row = $result2->fetch_assoc()) {
+            echo "id: " . $row["id"] . " - Kategori: " . $row["kategori"] . " - İl: " . $row["il"] . " - İlçe: " . $row["ilce"] . " - Mahalle: " . $row["mahalle"] . "<br>";
+        }
+    } else {
+        echo "0 Sonuç Bulundu";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +56,15 @@ if ($conn->connect_error) {
                 <h1>Hayalindeki evi bulmak için doğru adrestesin.</h1>
                 <p>Binlerce ilan arasından hayalindeki evi bulmak için hemen ara.</p>
             </div>
+
+            //
             <div class="hero-input-container">
-                <form action="">
-                    <div class="form-box">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <div class=" form-box">
                         <span class="material-symbols-outlined">
                             home
                         </span>
-                        <select id="select-category" class="demo-default">
+                        <select id="select-category" class="demo-default" name="kategori">
                             <option value="1">SATILIK</option>
                             <option value="2">KİRALIK</option>
                         </select>
@@ -49,35 +73,87 @@ if ($conn->connect_error) {
                         <span class="material-symbols-outlined">
                             location_city
                         </span>
-                        <select id="select-category" class="demo-default">
+                        <select id="select-category" class="demo-default" name="il">
                             <!-- Default İl -->
                             <option value="0">İL</option>
                             <!-- İl Listesi -->
-                            <option value="1">Adana</option>
-                            <option value="2">Adıyaman</option>
-                            <option value="3">Afyonkarahisar</option>
-                            <option value="4">Ağrı</option>
-                            <option value="5">Amasya</option>
-                            <option value="6">Ankara</option>
-                            <option value="7">Antalya</option>
-                            <option value="8">Artvin</option>
-                            <option value="9">Aydın</option>
-                            <option value="10">Balıkesir</option>
-                            <option value="11">Bilecik</option>
-                            <option value="12">Bingöl</option>
-                            <option value="13">Bitlis</option>
-                            <option value="14">Bolu</option>
-                            <option value="15">Burdur</option>
-                            <option value="16">Bursa</option>
-                            <option value="17">Çanakkale</option>
-                            <option value="18">Çankırı</option>
-                            <option value="19">Çorum</option>
-                            <option value="20">Denizli</option>
-                            <option value="21">Diyarbakır</option>
-                            <option value="22">Edirne</option>
-                            <option value="23">Elazığ</option>
-                            <option value="24">Erzincan</option>
-                            <option value="25">Erzurum</option>
+                            <option value="Adana">Adana</option>
+                            <option value="Adıyaman">Adıyaman</option>
+                            <option value="Afyonkarahisar">Afyonkarahisar</option>
+                            <option value="Ağrı">Ağrı</option>
+                            <option value="Amasya">Amasya</option>
+                            <option value="Ankara">Ankara</option>
+                            <option value="Antalya">Antalya</option>
+                            <option value="Artvin">Artvin</option>
+                            <option value="Aydın">Aydın</option>
+                            <option value="Balıkesir">Balıkesir</option>
+                            <option value="Bilecik">Bilecik</option>
+                            <option value="Bingöl">Bingöl</option>
+                            <option value="Bitlis">Bitlis</option>
+                            <option value="Bolu">Bolu</option>
+                            <option value="Burdur">Burdur</option>
+                            <option value="Bursa">Bursa</option>
+                            <option value="Çanakkale">Çanakkale</option>
+                            <option value="Çankırı">Çankırı</option>
+                            <option value="Çorum">Çorum</option>
+                            <option value="Denizli">Denizli</option>
+                            <option value="Diyarbakır">Diyarbakır</option>
+                            <option value="Edirne">Edirne</option>
+                            <option value="Elazığ">Elazığ</option>
+                            <option value="Erzincan">Erzincan</option>
+                            <option value="Erzurum">Erzurum</option>
+                            <option value="Eskişehir">Eskişehir</option>
+                            <option value="Gaziantep">Gaziantep</option>
+                            <option value="Giresun">Giresun</option>
+                            <option value="Gümüşhane">Gümüşhane</option>
+                            <option value="Hakkari">Hakkari</option>
+                            <option value="Hatay">Hatay</option>
+                            <option value="Isparta">Isparta</option>
+                            <option value="Mersin">Mersin</option>
+                            <option value="İstanbul">İstanbul</option>
+                            <option value="İzmir">İzmir</option>
+                            <option value="Kars">Kars</option>
+                            <option value="Kastamonu">Kastamonu</option>
+                            <option value="Kayseri">Kayseri</option>
+                            <option value="Kırklareli">Kırklareli</option>
+                            <option value="Kırşehir">Kırşehir</option>
+                            <option value="Kocaeli">Kocaeli</option>
+                            <option value="Konya">Konya</option>
+                            <option value="Kütahya">Kütahya</option>
+                            <option value="Malatya">Malatya</option>
+                            <option value="Manisa">Manisa</option>
+                            <option value="Kahramanmaraş">Kahramanmaraş</option>
+                            <option value="Mardin">Mardin</option>
+                            <option value="Muğla">Muğla</option>
+                            <option value="Muş">Muş</option>
+                            <option value="Nevşehir">Nevşehir</option>
+                            <option value="Niğde">Niğde</option>
+                            <option value="Ordu">Ordu</option>
+                            <option value="Rize">Rize</option>
+                            <option value="Sakarya">Sakarya</option>
+                            <option value="Samsun">Samsun</option>
+                            <option value="Siirt">Siirt</option>
+                            <option value="Sinop">Sinop</option>
+                            <option value="Sivas">Sivas</option>
+                            <option value="Tekirdağ">Tekirdağ</option>
+                            <option value="Tokat">Tokat</option>
+                            <option value="Trabzon">Trabzon</option>
+                            <option value="Tunceli">Tunceli</option>
+                            <option value="Şanlıurfa">Şanlıurfa</option>
+                            <option value="Uşak">Uşak</option>
+                            <option value="Van">Van</option>
+                            <option value="Yozgat">Yozgat</option>
+                            <option value="Zonguldak">Zonguldak</option>
+                            <option value="Aksaray">Aksaray</option>
+                            <option value="Bayburt">Bayburt</option>
+                            <option value="Karaman">Karaman</option>
+                            <option value="Kırıkkale">Kırıkkale</option>
+                            <option value="Batman">Batman</option>
+                            <option value="Şırnak">Şırnak</option>
+                            <option value="Bartın">Bartın</option>
+                            <option value="Ardahan">Ardahan</option>
+                            <option value="Iğdır">Iğdır</option>
+                            <option value="Yalova">Yalova</option>
                         </select>
                     </div>
                     <div class="form-box">
@@ -85,18 +161,21 @@ if ($conn->connect_error) {
                             <!-- İlçe  İkon-->
                             location_on
                         </span>
-                        <input type="text" placeholder="İlçe" />
+                        <input type="text" placeholder="İlçe" name="ilce" />
                     </div>
                     <div class="form-box">
                         <span class="material-symbols-outlined">
                             signpost
                         </span>
-                        <input type="text" placeholder="Mahalle" />
+                        <input type="text" placeholder="Mahalle" name="mahalle" />
                     </div>
                     <div class="form-box">
-                        <span class="material-symbols-outlined">
+                        <button type="submit" name="submit  style=" background: transparent; outline: none; border: 0; ">        
+                            <span class=" material-symbols-outlined">
                             search
-                        </span>
+                            </span>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -151,6 +230,7 @@ if ($conn->connect_error) {
                 <div class="swiper-button-prev"></div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

@@ -1,11 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "emlakla";
-$conn = new mysqli($servername, $username, $password, $dbname);
-$conn->set_charset("utf8");
-if ($conn->connect_error) {
+$servername = "localhost"; // Sunucu Adı
+$username = "root"; // Kullanıcı Adı
+$password = ""; // Şifre
+$dbname = "emlakla";    // Veritabanı Adı
+$conn = new mysqli($servername, $username, $password, $dbname); // Veritabanı bağlantısı
+$conn->set_charset("utf8"); // Türkçe karakter sorunu için utf8 olarak ayarlar
+if ($conn->connect_error) { // Bağlantı başarısız ise Hata mesajı gösterir
     die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
-}
-$conn->close();
+}   
+$conn->close();   // Bağlantıyı kapatır

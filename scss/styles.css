@@ -323,9 +323,9 @@ input {
 .all-features-container {
   width: 100%;
   height: 100%;
-  padding: 20px 20px 20px 270px;
+  padding: 20px 150px 20px 150px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 40px;
 }
 .all-features-container .feature-card {
@@ -346,6 +346,7 @@ input {
 .all-features-container .feature-card .card img {
   width: 100%;
   height: 100%;
+  max-height: 190px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
@@ -1090,6 +1091,147 @@ input {
   background-color: #244aa8;
 }
 
+.contact-us {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 100px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+.contact-us h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: "Nunito", sans-serif;
+  color: #2f55d4;
+  margin-bottom: 20px;
+}
+.contact-us form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contact-us form .form-group {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.contact-us form .form-group label {
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+  font-size: 1rem;
+  font-weight: 900;
+  font-family: "Nunito", sans-serif;
+  color: #2f55d4;
+  margin-bottom: 10px;
+}
+.contact-us form .form-group input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 0 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  color: #223445;
+  transition: all 0.3s ease-in-out;
+  background-color: #f8f8f8;
+  margin-bottom: 10px;
+}
+.contact-us form .form-group input:focus {
+  border: 1px solid #2f55d4;
+  outline: none;
+}
+.contact-us form .form-group textarea {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  color: #223445;
+  transition: all 0.3s ease-in-out;
+  background-color: #f8f8f8;
+  margin-bottom: 10px;
+}
+.contact-us form .form-group textarea:focus {
+  border: 1px solid #2f55d4;
+  outline: none;
+}
+.contact-us form button {
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 0 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  color: #223445;
+  transition: all 0.3s ease-in-out;
+  background-color: #2f55d4;
+  color: #ffffff;
+  cursor: pointer;
+}
+.contact-us form button:hover {
+  background-color: #244aa8;
+}
+
+.aboutus {
+  width: 100%;
+  height: 100%;
+  padding: 40px 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.aboutus .aboutus-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.aboutus .aboutus-container .aboutus-title {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.aboutus .aboutus-container .aboutus-title h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: "Nunito", sans-serif;
+  color: #2f55d4;
+  margin-bottom: 20px;
+}
+.aboutus .aboutus-container .aboutus-title p {
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  color: #223445;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
 .hero {
   background: url("../assets/images/background.JPG") no-repeat center center;
   background-size: cover;
@@ -1191,6 +1333,7 @@ input {
 .featured-ads .featured-ads-swiper .swiper-wrapper .feature-card .card img {
   width: 100%;
   height: 100%;
+  max-height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;

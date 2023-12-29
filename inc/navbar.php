@@ -11,8 +11,8 @@
         <div class="navbar-links">
             <ul>
                 <li><a href="/emlakla/index.php">Anasayfa</a></li>
-                <li><a href="#">Hakkımızda</a></li>
-                <li><a href="#">İletişim</a></li>
+                <li><a href="/emlakla/hakkimizda/">Hakkımızda</a></li>
+                <li><a href="/emlakla/iletisim/">İletişim</a></li>
                 <?php
                 if (isset($_SESSION['user'])) {
                     echo '<li class="estate"><a href="/emlakla/emlak-ekle/">Hemen Emlakla</a></li>';

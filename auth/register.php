@@ -1,26 +1,26 @@
 <?php
-include '../config.php';
-// Veritabanı bağlantısı
-$conn = new mysqli($servername, $username, $password, $dbname);
+include '../config.php'; // Veritabanı bağlantısı sağlanıyor
 
-// Bağlantıyı kontrol et
-if ($conn->connect_error) {
+$conn = new mysqli($servername, $username, $password, $dbname); // Veritabanı bağlantısı 
+
+if ($conn->connect_error) { // Bağlantı başarısız ise Hata mesajı gösterir
     die("Veritabanı bağlantısı başarısız oldu: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $password = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") { // Formdan veri gelip gelmediğini kontrol eder
+    $name = $_POST['name']; // Formdan gelen mail değerini alır
+    $last_name = $_POST['last_name'];  // Formdan gelen password değerini alır
+    $email = $_POST['email'];    // Formdan gelen password değerini alır
+    $phone = $_POST['phone'];   // Formdan gelen password değerini alır
+    $password = $_POST['password']; // Formdan gelen password değerini alır
 
-    $sql = "INSERT INTO users (name, last_name, mail, phone, password) VALUES ('$name', '$last_name', '$email', '$phone', '$password')";
+    $sql = "INSERT INTO users (name, last_name, mail, phone, password) VALUES ('$name', '$last_name', '$email', '$phone', '$password')";    
+    // Veritabanından kullanıcı bilgilerini çeker
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: /emlakla/auth/");
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    if ($conn->query($sql) === TRUE) {  // Sorguyu çalıştırır
+        header("Location: /emlakla/auth/"); // Anasayfaya yönlendirir
+    } else {    // Eğer kullanıcı yoksa hatayı gösterir
+        echo "Error: " . $sql . "<br>" . $conn->error;  
     }
 }
 ?>
